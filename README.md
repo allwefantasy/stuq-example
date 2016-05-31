@@ -1,0 +1,4 @@
+./bin/spark-submit --class com.letvcloud.bigdata.app.VodStatisticsToES --conf "spark.driver.extraJavaOptions=-XX:MaxPermSize=128m" --conf "spark.executor.extraJavaOptions=-XX:MaxPermSize=128m" --conf "spark.storage.memoryFraction=0.05"   --master yarn-cluster   --executor-memory 2G   --driver-memory 4G   --num-executors 35   --executor-cores 2 --jars hadoop-lzo-0.4.20-SNAPSHOT.jar jars/log-to-es-1.0-SNAPSHOT-online.jar 300 0
+
+
+./bin/spark-submit --class com.letvcloud.bigdata.app.LiveErrorLogToESStreaming --conf "spark.driver.extraJavaOptions=-XX:MaxPermSize=128m" --conf "spark.executor.extraJavaOptions=-XX:MaxPermSize=128m"  --conf "spark.storage.memoryFraction=0.05" --master yarn-cluster   --executor-memory 2G   --driver-memory 4G   --num-executors 5   --executor-cores 2 --jars hadoop-lzo-0.4.20-SNAPSHOT.jar jars/log-to-es-1.0-SNAPSHOT-online.jar 

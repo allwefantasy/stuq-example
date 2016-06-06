@@ -18,7 +18,7 @@ class TestInputStream[T: ClassTag](_ssc: StreamingContext, input: Seq[Seq[T]], n
   def compute(validTime: Time): Option[RDD[T]] = {
     logInfo("Computing RDD for time " + validTime)
     val index = ((validTime - zeroTime) / slideDuration - 1).toInt
-    val selectedInput = if (index < input.size) input(index) else Seq[T]()
+    val selectedInput = if (index < input.size) input(index) else input(0)
 
     // lets us test cases where RDDs are not created
     if (selectedInput == null) {

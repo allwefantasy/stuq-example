@@ -1,0 +1,9 @@
+ ./bin/spark-submit \
+  --class streaming.core.StreamingApp \
+  --master local[2] \
+  /Users/allwefantasy/Downloads/streamingpro-0.1.1-SNAPSHOT-online-1.5.1.jar \
+  -streaming.name 30 \
+  -streaming.duration 30 \
+  -streaming.job.file.path file:///tmp/test.json \
+  -streaming.rest true \
+  -streaming.driver.port 9003

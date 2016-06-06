@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.10.3</scala.version>
         <scala.2.version>2.10</scala.2.version>
-        <spark.version>1.5.1</spark.version>
+        <spark.version>1.6.1</spark.version>
 
     </properties>
 
@@ -102,9 +102,15 @@
     <dependencies>
 
         <dependency>
+            <groupId>net.liftweb</groupId>
+            <artifactId>lift-json_2.10</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming-kafka_2.10</artifactId>
-            <version>1.5.1</version>
+            <version>${spark.version}</version>
         </dependency>
 
         <dependency>
@@ -117,6 +123,12 @@
             <groupId>org.joda</groupId>
             <artifactId>joda-convert</artifactId>
             <version>1.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.10</artifactId>
+            <version>${spark.version}</version>
         </dependency>
 
         <dependency>

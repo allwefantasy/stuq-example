@@ -43,6 +43,20 @@ object StuqExampleMapWithState {
 
       /*
           参看: https://docs.cloud.databricks.com/docs/spark/1.6/examples/Streaming%20mapWithState.html
+          这里的key,value,state 可以是三个不同用户自定义对象，不一定是基本对象或者仅仅做累加，一个更复杂的例子如：
+
+          def stateUpdateFunction(
+                     userId: UserId,
+                     newData: UserAction,
+                     stateData: State[UserSession]): UserModel = {
+
+                     val currentSession = stateData.get()    // Get current session data
+                     val updatedSession = ...            // Compute updated session using newData
+                     stateData.update(updatedSession)            // Update session data
+
+                     val userModel = ...                 // Compute model using updatedSession
+                     return userModel                // Send model downstream
+}
          */
       def trackStateFunc(batchTime: Time,
                          key: String,

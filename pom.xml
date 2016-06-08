@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>stuq.example</groupId>
-    <artifactId>log-to-es</artifactId>
+    <artifactId>StupExample</artifactId>
     <version>1.1-SNAPSHOT-${mode}</version>
 
 

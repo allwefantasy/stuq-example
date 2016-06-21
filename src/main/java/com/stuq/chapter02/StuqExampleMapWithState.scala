@@ -20,7 +20,6 @@ object StuqExampleMapWithState {
     }
 
 
-
     def createContext = {
       val ssc = new StreamingContext(conf, Seconds(duration))
       ssc.checkpoint("file:///tmp/mapwithstate/")

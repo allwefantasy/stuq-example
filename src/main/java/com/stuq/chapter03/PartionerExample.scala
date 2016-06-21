@@ -34,6 +34,7 @@ object PartionerExample {
 
       val paths = rdd.map(f => f._1).distinct().collect()
 
+      //[a,b,c] -> zipWithIndex -> [(a,0),(b,1),(c,2)]
       val pathToIndexDis = rdd.context.broadcast(paths.zipWithIndex.toMap)
       val indexToPathDis = rdd.context.broadcast(paths.zipWithIndex.map(_.swap).toMap)
 

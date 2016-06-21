@@ -1,6 +1,7 @@
 package com.stuq.chapter04
 
 import _root_.kafka.serializer.StringDecoder
+import com.stuq.chapter02.Mock
 import com.stuq.nginx.parser.NginxParser
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SQLContext

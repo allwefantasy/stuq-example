@@ -41,7 +41,7 @@ object StuqExampleES {
     result.foreachRDD { rdd =>
       val cfg = Map(
         "es.resource" -> "test/test",
-        "es.nodes" -> "127.0.0.1"
+        "es.nodes" -> "10.75.137.69"
       )
       EsSpark.saveToEs(rdd, cfg)
 

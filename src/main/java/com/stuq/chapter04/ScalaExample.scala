@@ -5,6 +5,7 @@ package com.stuq.chapter04
  */
 object ScalaExample {
   def main(args: Array[String]): Unit = {
+    import com.stuq.chapter04.TaskServiceE._
     val a = new A()
     println(a.b)
   }

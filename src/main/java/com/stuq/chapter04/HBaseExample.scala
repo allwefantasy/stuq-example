@@ -30,9 +30,12 @@ object HBaseExample {
 
     result.foreachRDD { rdd =>
       rdd.foreachPartition { f =>
+        SimpleHBaseClient.createTableIfNotExists("wiki")
         f.foreach { line =>
           //RowKey规则: md5+";"+datetime+";"+realkey
-          SimpleHBaseClient.put(System.currentTimeMillis() + "", line)
+          val key = System.currentTimeMillis() + ""
+          SimpleHBaseClient.put(key, line)
+          println(SimpleHBaseClient.get(key))
         }
       }
     }

@@ -34,14 +34,14 @@ object StuqExampleES {
     //Transform
     val result = input.map { nginxLogLine =>
       val items = NginxParser.parse(nginxLogLine)
-      ("domain",items(2).split("/")(2))
+      Map("domain" -> items(2).split("/")(2))
     }
 
     //这个是存储
     result.foreachRDD { rdd =>
       val cfg = Map(
         "es.resource" -> "test/test",
-        "es.nodes" -> "10.75.137.69"
+        "es.nodes" -> "192.168.31.103"
       )
       EsSpark.saveToEs(rdd, cfg)
 
@@ -50,7 +50,7 @@ object StuqExampleES {
       val df = sqlContext.read.format("org.elasticsearch.spark.sql").options(cfg).load("test/test")
       df.registerTempTable("test")
 
-      sqlContext.sql("select * from test").foreach(f=>println(f))
+      sqlContext.sql("select * from test").foreach(f => println(f))
 
     }
 

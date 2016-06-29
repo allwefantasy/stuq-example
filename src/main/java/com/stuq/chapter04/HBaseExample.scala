@@ -4,6 +4,9 @@ import com.stuq.chapter02.Mock
 import com.stuq.nginx.parser.NginxParser
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext, TestInputStream}
+import org.elasticsearch.spark.rdd.EsSpark
+
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * 6/20/16 WilliamZhu(allwefantasy@gmail.com)
@@ -21,7 +24,6 @@ object HBaseExample {
     val ssc = new StreamingContext(conf, Seconds(duration))
 
     val input = new TestInputStream[String](ssc, Mock.items2, 1)
-
 
     val result = input.map { nginxLogLine =>
       val items = NginxParser.parse(nginxLogLine)

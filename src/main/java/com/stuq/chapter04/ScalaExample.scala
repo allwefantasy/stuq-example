@@ -1,5 +1,7 @@
 package com.stuq.chapter04
 
+import java.util
+
 /**
  * 6/21/16 WilliamZhu(allwefantasy@gmail.com)
  */
@@ -12,7 +14,7 @@ object ScalaExample {
 }
 
 class A {
-  def a = {
+  def a1 = {
     "A.a"
   }
 }

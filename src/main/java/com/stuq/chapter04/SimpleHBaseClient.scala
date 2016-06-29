@@ -5,6 +5,7 @@ import org.apache.hadoop.hbase.util.Bytes
 import org.apache.hadoop.hbase.{HBaseConfiguration, HColumnDescriptor, HTableDescriptor, TableName}
 
 
+
 /**
  * 6/20/16 WilliamZhu(allwefantasy@gmail.com)
  */

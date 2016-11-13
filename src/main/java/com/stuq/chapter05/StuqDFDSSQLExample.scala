@@ -52,12 +52,14 @@ object StuqDFDSSQLExample {
       val sqlContext = SQLContext.getOrCreate(rdd.sparkContext)
       import org.apache.spark.sql.functions._
       import sqlContext.implicits._
+
       //case class DC2(domain: String, count: Int)
       val ds = sqlContext.createDataset(rdd).as[DC]
       println("-----ds1 demo--------")
-      ds.groupBy(_.domain).agg(sum("count").as("kk").as[Long]).select(expr("kk").as[Long]).show()
+      //select sum(count) as kk from abc group by domain
+      ds.groupBy(_.domain).agg(sum("count").as("kk").as[Long]).select(expr("kk").as[Long]).show(10)
       println("-----ds2 demo--------")
-      ds.select(expr("count as kk1").as[Int]).select(expr("kk1").as[Int]).show()
+      ds.select(expr("count as kk1").as[Int],expr("domain as domain").as[String]).select(expr("kk1").as[Int]).show()
       ds.select(expr("count as kk1").as[Int],expr("domain as kk2").as[String]).show()
 
     }
@@ -68,7 +70,8 @@ object StuqDFDSSQLExample {
       val df = sqlContext.createDataFrame(rdd)
       import org.apache.spark.sql.functions._
       println("-----df demo--------")
-      df.groupBy("domain").agg(sum("count") as "c2").show()
+      //select sum(count) as c2 from table where count > 3 group by domain
+      df.where("count > 3").groupBy("domain").agg(sum("count") as "c2").show()
     }
 
     //sql 的例子

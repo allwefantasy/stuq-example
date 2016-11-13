@@ -4,7 +4,7 @@ import com.stuq.chapter02.Mock
 import org.apache.spark.ml.clustering.{KMeans, KMeansModelPerJVM}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
-import org.apache.spark.sql.{DataFrame, SQLContext}
+import org.apache.spark.sql.{Row, DataFrame, SQLContext}
 import org.apache.spark.streaming.{Seconds, StreamingContext, TestInputStream}
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -25,11 +25,11 @@ object KMeansExample2 {
     val testData = new TestInputStream[String](ssc, Mock.kmeansPredict, 1).map(LabeledPoint.parse)
     testData.foreachRDD { rdd =>
       val sqlContext = SQLContext.getOrCreate(rdd.context)
-      val dataset: DataFrame = sqlContext.createDataFrame(rdd).toDF("id", "features")
+      val df: DataFrame = sqlContext.createDataFrame(rdd).toDF("id", "features")
 
       import org.apache.spark.mllib.linalg.Vector
 
-      val predictDataFrame = dataset.map { k =>
+      val predictDataFrame = df.map { k:Row =>
         (k.getAs[Double]("id"), KMeansModelPerJVM.predict(k.getAs[Vector]("features")))
       }
 
